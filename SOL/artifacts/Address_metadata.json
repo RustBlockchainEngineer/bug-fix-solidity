@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.5+commit.a4f2e591"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Collection of functions related to the address type",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Pomsky.sol": "Address"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Pomsky.sol": {
+			"keccak256": "0x4c6de4725940afec06ec31622306719ee4a7155af66e6b20c3b6d59a271eec58",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://52bff0f6984d797bc4b3a0cc4fd994f2df0fe6cdb7d72897bfb49929896ce7a0",
+				"dweb:/ipfs/Qmd4c4bG1MqEwsm6nfEa8oZK7o1gKmmAErzkcvR7XgSAY3"
+			]
+		}
+	},
+	"version": 1
+}

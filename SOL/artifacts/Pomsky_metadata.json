@@ -1,0 +1,1071 @@
+{
+	"compiler": {
+		"version": "0.8.5+commit.a4f2e591"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "charityFundAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "redistFundAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "marketingFundAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "punishmentFundAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "liquidityTokenAddr",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokens",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "wbnb",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "liquidity",
+						"type": "uint256"
+					}
+				],
+				"name": "AddedLiquidity",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "blacklisted",
+						"type": "bool"
+					}
+				],
+				"name": "Blacklisted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Burned",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "added",
+						"type": "bool"
+					}
+				],
+				"name": "Exchange",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "exempted",
+						"type": "bool"
+					}
+				],
+				"name": "ExemptedFromFees",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addExchange",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addFeeExemption",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addToBlacklist",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					}
+				],
+				"name": "allowance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "autoBurnFeePerMill",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "autoLiquidityFeePerMill",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "autoRedistributionFeePerMill",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "burn",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "charityFund",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "charityFundFeePerMill",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "decimals",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "disableTrading",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "enableTrading",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "freeWhales",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isBlacklisted",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isTradingEnabled",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isWhaleCatchingEnabled",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "liquidityTokenAddress",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "marketingFund",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "marketingFundFeePerMill",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "maxTransferAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "punishmentFund",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "punishmentFundFeePerMill",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "redistFund",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "redistFundFeePerMill",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "removeExchange",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "removeFeeExemption",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "removeFromBlacklist",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "charityFee",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "redistFee",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "marketingFee",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "punishmentFee",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "autoLiquidityFee",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "autoRedistributionFee",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "autoBurnFee",
+						"type": "uint8"
+					}
+				],
+				"name": "setFees",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalFeesCollected",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "provider",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "uniswapV2Router",
+				"outputs": [
+					{
+						"internalType": "contract IUniswapV2Router02",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "uniswapV2WETHPair",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "whaleCatchingLimit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"events": {
+				"AddedLiquidity(uint256,uint256,uint256)": {
+					"details": "Event signaling that 'tokens' tokens and 'wbnb' WBNB have been added to the liquidity pool, obtaining 'liquidity' Cake-LP."
+				},
+				"Blacklisted(address,bool)": {
+					"details": "Event signalling that `account` was blacklisted (blacklisted == true) or removed from the list (blacklisted == false)."
+				},
+				"Burned(uint256)": {
+					"details": "Event signalling that some tokens were destroyed."
+				},
+				"Exchange(address,bool)": {
+					"details": "Event signalling that `account` was added as exchange (added == true) or removed from the list of exchanges (added == false)."
+				},
+				"ExemptedFromFees(address,bool)": {
+					"details": "Event signalling that some tokens were destroyed."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"decimals()": {
+					"returns": {
+						"_0": "The decimals of the token."
+					}
+				},
+				"name()": {
+					"returns": {
+						"_0": "The name of the token."
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"symbol()": {
+					"returns": {
+						"_0": "The symbol of the token."
+					}
+				},
+				"totalSupply()": {
+					"returns": {
+						"_0": "the total current supply of tokens"
+					}
+				}
+			},
+			"stateVariables": {
+				"MAX_INT_VALUE": {
+					"details": "the maximum uint256 value in solidity, which is used to convert the total supply of tokens to reflections."
+				},
+				"_accruedPunishmentTax": {
+					"details": "the amount of sales fees that have not yet been converted to BNB"
+				},
+				"_allowances": {
+					"details": "Allowances: mapping owner -> (spender, amount)"
+				},
+				"_blacklisted": {
+					"details": "Addresses that are excluded from transactions."
+				},
+				"_exchange": {
+					"details": "Addresses that pertain to exchanges. Used to detect whether a transaction is a sale or not."
+				},
+				"_isExcludedFromFees": {
+					"details": "Accounts which are excluded from paying tax fees."
+				},
+				"_pancakeswapRouterAddress": {
+					"details": "address of pancakeswap router 02 on BSC"
+				},
+				"_reflectionBalance": {
+					"details": "The wallet which holds the account balance in reflections."
+				},
+				"_reflectionSupply": {
+					"details": "Convert the total supply to reflections with perfect rounding using the maximum uint256 as the numerator."
+				},
+				"_tokenSupply": {
+					"details": "The current amount of tokens."
+				},
+				"_totalTokenFees": {
+					"details": "the amount of fees collected ever"
+				},
+				"charityFund": {
+					"details": "Address used to collect BNB for donations."
+				},
+				"isTradingEnabled": {
+					"details": "state - whether trading is enabled or not"
+				},
+				"isWhaleCatchingEnabled": {
+					"details": "state - whether whale catching is enabled or not"
+				},
+				"liquidityTokenAddress": {
+					"details": "Address to store Cake-LP tokens."
+				},
+				"marketingFund": {
+					"details": "Address used to collect BNB for marketing+development."
+				},
+				"maxTransferAmount": {
+					"details": "At most 0.15% of the initial total supply may be transfered at once."
+				},
+				"punishmentFund": {
+					"details": "Address used to collect BNB from token selling."
+				},
+				"redistFund": {
+					"details": "Address used to collect BNB for redistributions (buyback + burn)."
+				},
+				"uniswapV2Router": {
+					"details": "Addresses used for swapping. The router is actually the Pancakeswap router 02."
+				},
+				"whaleCatchingLimit": {
+					"details": "While isWhaleCatchingEnabled, the max amount of tokens allowed on any transfer destination address is 0.5% of the initial total supply."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addExchange(address)": {
+					"notice": "Add `account` to list of exchanges."
+				},
+				"addFeeExemption(address)": {
+					"notice": "Account `account` shall not pay fees anymore."
+				},
+				"addToBlacklist(address)": {
+					"notice": "Add `account` to blacklist, excluding it from future transfers."
+				},
+				"allowance(address,address)": {
+					"notice": "Show the allowance of `beneficiary` on tokens in `owner` account."
+				},
+				"approve(address,uint256)": {
+					"notice": "Give `beneficiary` an allowance of `amount` tokens on the sender's account."
+				},
+				"balanceOf(address)": {
+					"notice": "Get the total amount of tokens at `account`."
+				},
+				"burn(uint256)": {
+					"notice": "Destroy `amount` tokens of caller."
+				},
+				"disableTrading()": {
+					"notice": "Allow only transfers from/to the contract owner's account."
+				},
+				"enableTrading()": {
+					"notice": "Allow transfers for everyone, except for blacklisted addresses."
+				},
+				"freeWhales()": {
+					"notice": "Allow holders to have more than 0.5% of initial token supply."
+				},
+				"removeExchange(address)": {
+					"notice": "Remove `account` from list of exchanges."
+				},
+				"removeFeeExemption(address)": {
+					"notice": "Account `account` shall pay fees."
+				},
+				"removeFromBlacklist(address)": {
+					"notice": "Remove `account` from blacklist, allowing it to participate in transfers."
+				},
+				"renounceOwnership()": {
+					"notice": "Leaves the contract without owner. It will not be possible to call 'onlyOwner' functions anymore."
+				},
+				"setFees(uint8,uint8,uint8,uint8,uint8,uint8,uint8)": {
+					"notice": "Set fee structure. All fees in per mill (1/1000)."
+				},
+				"totalFeesCollected()": {
+					"notice": "Get the amount of fees collected ever."
+				},
+				"transfer(address,uint256)": {
+					"notice": "Transfer `amount` tokens from caller's account to `recipient`."
+				},
+				"transferFrom(address,address,uint256)": {
+					"notice": "Transfer `amount` tokens from `provider` to `beneficiary`, if sufficient allowance is given."
+				},
+				"transferOwnership(address)": {
+					"notice": "Transfers ownership of the contract to account `newOwner`."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Pomsky.sol": "Pomsky"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Pomsky.sol": {
+			"keccak256": "0x4c6de4725940afec06ec31622306719ee4a7155af66e6b20c3b6d59a271eec58",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://52bff0f6984d797bc4b3a0cc4fd994f2df0fe6cdb7d72897bfb49929896ce7a0",
+				"dweb:/ipfs/Qmd4c4bG1MqEwsm6nfEa8oZK7o1gKmmAErzkcvR7XgSAY3"
+			]
+		}
+	},
+	"version": 1
+}

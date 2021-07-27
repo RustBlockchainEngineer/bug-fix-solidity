@@ -1,0 +1,31 @@
+
+https://pancake.kiemtienonline360.com/#/swap
+https://bsc.kiemtienonline360.com/
+Pancake Swap Contract Address: 0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3
+Pools: BUSD-WBNB, USDT-WWBNB, BUSD-USDT, USDT-DAI, BUSD-ETH, USDT-ETH
+User Avatar
+ALL source
+
+
+Hello , i have an BEP20 contract on solidity and there is an bug when 
+I deploy the contract to testnet there is anything work good expect 
+when I add liquidity in pancakeswap i can not buy token there is some error
+but with owner account I can buy or if I disable all fees its work
+
+sell/transfer
+work good with fee
+
+but buy with any fee is not work
+
+transfer or exchange work for owner coz fee is 0
+but when we add fee someone else can not exchange bnb to our token
+we got this
+The transaction cannot succeed due to error: undefined. 
+This is probably an issue with one of the tokens you are swapping.
+
+
+i changed also the sllipage
+but not work
+when fee 0 work
+when you deploy please off anti whale and enable trading to work
+i mean when token minted in functions you see in remix
